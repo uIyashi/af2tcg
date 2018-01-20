@@ -4,12 +4,8 @@ abstract public class Carte {
     int cout;
     String nom;
     Joueur owner;
-    /*
-    public Carte(String nom, Element couleur, int cout, Joueur owner){
-        this.nom = nom;
-        this.couleur = couleur;
-        this.cout = cout;
+
+    public Carte(Joueur owner){
         this.owner = owner;
     }
-    */
 }

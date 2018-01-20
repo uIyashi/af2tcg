@@ -5,7 +5,7 @@ public class Joueur {
     ArrayList<Carte> break_zone;
     ArrayList<Carte> damage_zone;
     ArrayList<Avant> terrain_avant;
-    // ArrayList<Soutien> terrain_soutien;
+    ArrayList<Soutien> terrain_soutien;
     ArrayList<Carte> main;
     Joueur adversaire;
 
