@@ -4,9 +4,10 @@ import java.util.Scanner;
 public class B_002C extends Sort{
     public B_002C(Joueur owner){
         super(owner);
+        nom = "Boule de feu LV1";
     }
 
-    private boolean spell(){
+    public boolean spell(){
         if(owner.adversaire.terrain_soutien.isEmpty() && owner.terrain_avant.isEmpty()){
             return false;
         }else{
@@ -16,7 +17,7 @@ public class B_002C extends Sort{
             choix.addAll(owner.terrain_avant);
             int pick = 1;
             for(Avant i: owner.adversaire.terrain_avant) {
-                System.out.println(pick + ": " + i.toString_basic());
+                System.out.println(pick + ": " + i.toString_full());
             }
             Scanner sc = new Scanner(System.in);
             int r = sc.nextInt();

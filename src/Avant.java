@@ -16,11 +16,11 @@ abstract public class Avant extends Carte {
         damage = damage + dmg;
     }
 
-    public String toString(){
+    public String toString_full(){
         return "[" + nom + " ~" + categorie + "~ #" + "] " + cout + " " + couleur + " (Bra: " + bravoure + "; Ini: " + initiative + "; Cel: " + celerite + ")";
     }
 
-    public String toString_basic(){
+    public String toString(){
         return "[" + nom + " ~" + categorie + "~ | " + couleur + " " + cout + " | " + puissance + "]";
     }
 }

@@ -8,4 +8,8 @@ abstract public class Carte {
     public Carte(Joueur owner){
         this.owner = owner;
     }
+
+    public String toString(){
+        return "[" + nom + " | " + cout + " " + couleur + "]";
+    }
 }
