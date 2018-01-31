@@ -12,4 +12,9 @@ abstract public class Carte {
     public String toString(){
         return "[" + nom + " | " + cout + " " + couleur + "]";
     }
+
+    public boolean entersTheField(){
+        // Rien
+        return true;
+    }
 }

@@ -36,6 +36,7 @@ public class Joueur {
         int i = 1;
         for(Carte c: main_joueur){
             System.out.println(i + ": " + c.toString());
+            i++;
         }
         Scanner sc = new Scanner(System.in);
         int id =  sc.nextInt();

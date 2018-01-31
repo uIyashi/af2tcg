@@ -5,6 +5,7 @@ public class B_002C extends Sort{
     public B_002C(Joueur owner){
         super(owner);
         nom = "Boule de feu LV1";
+        couleur = Element.ROUGE;
     }
 
     public boolean spell(){
