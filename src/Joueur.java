@@ -1,14 +1,20 @@
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class Joueur {
-    ArrayList<Carte> deck;
-    ArrayList<Carte> break_zone;
-    ArrayList<Carte> damage_zone;
-    ArrayList<Avant> terrain_avant;
-    ArrayList<Soutien> terrain_soutien;
-    ArrayList<Carte> main_joueur;
+
+    List<Carte> deck;
+    List<Carte> break_zone;
+    List<Carte> damage_zone;
+    List<Avant> terrain_avant;
+    List<Soutien> terrain_soutien;
+    List<Carte> main_joueur;
     Joueur adversaire;
+
+    //test
+    BreakZone breakZone;
+    DamageZone damageZone;
 
     public Joueur() {
         deck = new ArrayList<>();

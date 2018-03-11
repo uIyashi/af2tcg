@@ -1,6 +1,11 @@
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 import java.util.Scanner;
 
 public class C_015R extends Soutien {
+    private  static  final  long serialVersionUID =  1350192881346723536L;
+
     public C_015R(Joueur owner){
         super(owner);
         this.nom = "Suppresseur";
