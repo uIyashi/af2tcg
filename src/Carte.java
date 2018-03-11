@@ -30,9 +30,9 @@ abstract public class Carte implements Serializable{
         return true;
     }
 
-    public String getImageReference()
+    public Image getImage()
     {
-        return imageReference;
+        return ImageCarte.getImage(imageReference);
     }
 
     public String getType()

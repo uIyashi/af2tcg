@@ -1,20 +1,19 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class Joueur {
+public class Joueur implements Serializable{
 
-    List<Carte> deck;
-    List<Carte> break_zone;
-    List<Carte> damage_zone;
-    List<Avant> terrain_avant;
-    List<Soutien> terrain_soutien;
-    List<Carte> main_joueur;
-    Joueur adversaire;
+    private  static  final  long serialVersionUID =  1350092881346723535L;
 
-    //test
-    BreakZone breakZone;
-    DamageZone damageZone;
+    private List<Carte> deck;
+    private List<Carte> break_zone;
+    private List<Carte> damage_zone;
+    private List<Avant> terrain_avant;
+    private List<Soutien> terrain_soutien;
+    private List<Carte> main_joueur;
+    private Joueur adversaire;
 
     public Joueur() {
         deck = new ArrayList<>();
@@ -62,4 +61,25 @@ public class Joueur {
         damage_zone.add(deck.get(0));
         deck.remove(0);
     }
+
+    public Joueur getAdversaire()
+    {
+        return adversaire;
+    }
+
+    public List<Avant> getTerrain_avant()
+    {
+        return terrain_avant;
+    }
+
+    public List<Soutien> getTerrain_soutien()
+    {
+        return terrain_soutien;
+    }
+
+    public List<Carte> getMain_joueur()
+    {
+        return main_joueur;
+    }
+
 }

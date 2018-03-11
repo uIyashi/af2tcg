@@ -1,10 +1,10 @@
 import javafx.scene.Group;
+import javafx.scene.input.DataFormat;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
 public class EmplacementCarteSoutien extends EmplacementCarteTerrain
 {
-
     /**
      * Constructeur : va créer une ImageView qui sera placer au bon emplacement pour accueillir une carte de type Soutient
      * @param root le group principale où vont être mis les EmplacementCarteSoutien

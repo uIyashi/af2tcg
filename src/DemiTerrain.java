@@ -76,12 +76,23 @@ public class DemiTerrain
      */
     public void addCarteMainView(Group root, Carte carte)
     {
-        CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 184 + mainView.size()* 110,730);
+        CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 194 + mainView.size()* 110,730);
         mainView.add(iView);
     }
 
     public ImageView getImageTerrain()
     {
         return imageTerrain;
+    }
+
+    /**
+     * Methode que va déplacer les cartes dans la main après en avoir jouer une
+     * @param i l'indice de la carte jouer
+     */
+    public void miseAJourMainSelonIndice(int i)
+    {
+        for(int j = i; j <mainView.size(); j++)
+            mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 110, 730);
+
     }
 }

@@ -9,6 +9,7 @@ public class B_131C extends Avant {
         this.nom = "Paladin";
         this.puissance = 8000;
         this.couleur = Element.BLEU;
+        imageReference = ImageCarte.CARTE_B_131C.name();
     }
 
 }

@@ -12,16 +12,17 @@ public class B_002C extends Sort{
         couleur = Element.ROUGE;
     }
 
+    @Override
     public boolean spell(){
-        if(owner.adversaire.terrain_soutien.isEmpty() && owner.terrain_avant.isEmpty()){
+        if(owner.getAdversaire().getTerrain_soutien().isEmpty() && owner.getTerrain_avant().isEmpty()){
             return false;
         }else{
             System.out.println("Choisissez un Avant. Il reçoit 6000 points de dégâts.");
             ArrayList<Avant> choix = new ArrayList<>();
-            choix.addAll(owner.adversaire.terrain_avant);
-            choix.addAll(owner.terrain_avant);
+            choix.addAll(owner.getAdversaire().getTerrain_avant());
+            choix.addAll(owner.getTerrain_avant());
             int pick = 1;
-            for(Avant i: owner.adversaire.terrain_avant) {
+            for(Avant i: owner.getAdversaire().getTerrain_avant()) {
                 System.out.println(pick + ": " + i.toString_full());
             }
             Scanner sc = new Scanner(System.in);

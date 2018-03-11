@@ -1,21 +1,10 @@
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
-import javafx.util.Duration;
+
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Classe principale.
@@ -61,7 +50,7 @@ public class Jeu extends Application
         DemiTerrain test = new DemiTerrain(root);
         EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
         Carte c = new A_172C(j);
-        Carte c2 = new A_172C(j);
+        Carte c2 = new B_131C(j);
         test.addCarteMainView(root, c);
         test.addCarteMainView(root, c2);
         primaryStage.show();

@@ -1,8 +1,5 @@
 import javafx.scene.Group;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * Classe représsantant la zone avant du joueur
  */
