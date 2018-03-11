@@ -23,10 +23,14 @@ public class Joueur implements Serializable{
         terrain_soutien = new ArrayList<>();
         main_joueur = new ArrayList<>();
 
-        pioche(5);
+        //TODO A ENLEVER
+        deck.add(new A_172C(this));
+        deck.add(new A_172C(this));
+        deck.add(new B_131C(this));
+        //pioche(5);
     }
 
-    public void pioche(int nb_carte){
+    /*public void pioche(int nb_carte){
         for(int i = 0; i < nb_carte; i++) {
             if(gameOverCheck()){
                 break;
@@ -34,6 +38,20 @@ public class Joueur implements Serializable{
             main_joueur.add(deck.get(0));
             deck.remove(0);
         }
+    }*/
+
+    public Carte[] pioche(int nb_carte){
+        Carte cartesPiochee[] = new Carte[nb_carte];
+        for(int i = 0; i < nb_carte; i++) {
+            if(gameOverCheck()){
+                break;
+            }
+            Carte cartePiochee = deck.get(0);
+            main_joueur.add(cartePiochee);
+            cartesPiochee[i] = cartePiochee;
+            deck.remove(0);
+        }
+        return cartesPiochee;
     }
 
     public void defausserCarteDeLaMain(){
@@ -82,4 +100,8 @@ public class Joueur implements Serializable{
         return main_joueur;
     }
 
+    public List<Carte> getDeck()
+    {
+        return deck;
+    }
 }

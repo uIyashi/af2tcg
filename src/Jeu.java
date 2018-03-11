@@ -47,7 +47,7 @@ public class Jeu extends Application
 
 
         Joueur j = new Joueur();
-        DemiTerrain test = new DemiTerrain(root);
+        DemiTerrain test = new DemiTerrain(root, j);
         EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
         Carte c = new A_172C(j);
         Carte c2 = new B_131C(j);

@@ -21,6 +21,7 @@ public class DemiTerrain
     private DamageZone damageZone;
     private ZoneTerrainArriere zoneArriere;
     private ZoneTerrainAvant zoneAvant;
+    private DeckView deckView;
     private ImageView imageTerrain;
     private Joueur owner;
     private List<CarteViewJoueur> mainView;
@@ -36,6 +37,7 @@ public class DemiTerrain
         zoneArriere = new ZoneTerrainArriere(root);
         zoneAvant = new ZoneTerrainAvant(root);
         mainView = new ArrayList<CarteViewJoueur>();
+        deckView = new DeckView(root, this);
         initialisation(root);
     }
     /**
@@ -50,7 +52,8 @@ public class DemiTerrain
         damageZone = new DamageZone();
         zoneArriere = new ZoneTerrainArriere(root);
         zoneAvant = new ZoneTerrainAvant(root);
-
+        mainView = new ArrayList<CarteViewJoueur>();
+        deckView = new DeckView(root, this);
         initialisation(root);
     }
 
@@ -94,5 +97,15 @@ public class DemiTerrain
         for(int j = i; j <mainView.size(); j++)
             mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 110, 730);
 
+    }
+
+    public DeckView getDeckView()
+    {
+        return deckView;
+    }
+
+    public Joueur getOwner()
+    {
+        return owner;
     }
 }

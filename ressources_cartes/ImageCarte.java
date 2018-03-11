@@ -7,6 +7,9 @@ import javafx.scene.image.Image;
 public enum ImageCarte
 {
     EMPLACEMENT_AVANT(new Image("avant.jpg")),
+    DECK_FULL(new Image("deckFull.png")),
+    DECK_HALF(new Image("avant.jpg")),
+    DECK_EMPTY(new Image("avant.jpg")),
     CARTE_B_002C(new Image("sort.png")),
     CARTE_A_172C(new Image("sort.png")),
     CARTE_DOS(new Image("ss.png")),
