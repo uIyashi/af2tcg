@@ -17,13 +17,13 @@ import java.util.List;
 
 public class DemiTerrain
 {
-    BreakZone breakZone;
-    DamageZone damageZone;
-    ZoneTerrainArriere zoneArriere;
-    ZoneTerrainAvant zoneAvant;
-    ImageView imageTerrain;
-    Joueur owner;
-    List<ImageView> mainView;
+    private BreakZone breakZone;
+    private DamageZone damageZone;
+    private ZoneTerrainArriere zoneArriere;
+    private ZoneTerrainAvant zoneAvant;
+    private ImageView imageTerrain;
+    private Joueur owner;
+    private List<CarteViewJoueur> mainView;
 
 
     //TODO enlever le constructeur debug Terrain
@@ -35,6 +35,7 @@ public class DemiTerrain
         damageZone = new DamageZone();
         zoneArriere = new ZoneTerrainArriere(root);
         zoneAvant = new ZoneTerrainAvant(root);
+        mainView = new ArrayList<CarteViewJoueur>();
         initialisation(root);
     }
     /**
@@ -49,8 +50,13 @@ public class DemiTerrain
         damageZone = new DamageZone();
         zoneArriere = new ZoneTerrainArriere(root);
         zoneAvant = new ZoneTerrainAvant(root);
-        mainView = new ArrayList<ImageView>();
+
         initialisation(root);
+    }
+
+    public List<CarteViewJoueur> getMainView()
+    {
+        return mainView;
     }
 
     /**
@@ -59,14 +65,23 @@ public class DemiTerrain
      */
     private void initialisation(Group root)
     {
-        mainView = new ArrayList<ImageView>();
         imageTerrain = new ImageView(new Image("terrain.jpg"));
-        root.getChildren().add(imageTerrain);
+        root.getChildren().add(0, imageTerrain);
     }
 
-    public void addCarteMainView(Carte c)
+    /**
+     * Méthode qui va ajouter une ImageView pour afficher la carte passer en paramètre
+     * @param root le groupe qui va contenir les ImageView
+     * @param carte la carte à afficher
+     */
+    public void addCarteMainView(Group root, Carte carte)
     {
-
+        CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 184 + mainView.size()* 110,730);
+        mainView.add(iView);
     }
 
+    public ImageView getImageTerrain()
+    {
+        return imageTerrain;
+    }
 }

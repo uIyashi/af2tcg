@@ -8,11 +8,12 @@ public class A_172C extends Sort{
 
     //static final DataFormat CARTE_FORMAT = new DataFormat("Carte");
 
-    public A_172C(Joueur owner, Group root){
+    public A_172C(Joueur owner){
         super(owner);
         type = "sort";
         this.nom = "Mal pour deux biens";
         this.couleur = Element.BLEU;
+        imageReference = ImageCarte.CARTE_A_172C.name();
     }
 
     private void initialisation(Group root)

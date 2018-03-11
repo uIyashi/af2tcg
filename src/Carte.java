@@ -1,6 +1,9 @@
-import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
 
 
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 abstract public class Carte implements Serializable{
@@ -12,6 +15,7 @@ abstract public class Carte implements Serializable{
     protected String nom;
     protected Joueur owner;
     protected String type;
+    protected String imageReference;
 
     public Carte(Joueur owner){
         this.owner = owner;
@@ -26,4 +30,13 @@ abstract public class Carte implements Serializable{
         return true;
     }
 
+    public String getImageReference()
+    {
+        return imageReference;
+    }
+
+    public String getType()
+    {
+        return type;
+    }
 }

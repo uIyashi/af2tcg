@@ -20,11 +20,11 @@ abstract public class EmplacementCarteTerrain
         emplacement.setVisible(true);
         emplacement.setX(x);
         emplacement.setY(y);
-        root.getChildren().add(emplacement);
         empty = true;
         text.setText("");
         text.setFont(new Font("Arial", 10));
         text.setVisible(false);
+        root.getChildren().add(emplacement);
     }
 
     /**
@@ -34,5 +34,13 @@ abstract public class EmplacementCarteTerrain
     public boolean isEmpty()
     {
         return empty;
+    }
+
+    protected void setEmplacement(boolean empty)
+    {
+        if(empty)
+            this.empty = false;
+        else
+            this.empty = true;
     }
 }

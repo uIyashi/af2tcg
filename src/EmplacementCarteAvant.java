@@ -25,13 +25,12 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
         text.setX(emplacement.getX()+20);
         text.setY(emplacement.getY()+70);
 
-
         emplacement.setOnDragOver(event->
         {
             System.err.println("DnD Over detected");
             final Dragboard dragBroard = event.getDragboard();
             final Object o = event.getGestureSource();
-            if(o != emplacement && (dragBroard.getString() == "sort" || dragBroard.getString() == "avant"))
+            if(o != emplacement && empty && (dragBroard.getString() == "sort" || dragBroard.getString() == "avant"))
                 event.acceptTransferModes(TransferMode.MOVE);
             event.consume();
         });
@@ -46,6 +45,7 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
                 emplacement.setImage(dragBroard.getImage());
                 System.out.println(dragBroard.getString());
                 success = true;
+                setEmplacement(empty);
             }
             catch (Exception ex)
             {

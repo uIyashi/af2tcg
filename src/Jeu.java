@@ -60,8 +60,10 @@ public class Jeu extends Application
         Joueur j = new Joueur();
         DemiTerrain test = new DemiTerrain(root);
         EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
-        Carte c = new A_172C(j, root);
-        Carte c2 = new A_172C(j, root);
+        Carte c = new A_172C(j);
+        Carte c2 = new A_172C(j);
+        test.addCarteMainView(root, c);
+        test.addCarteMainView(root, c2);
         primaryStage.show();
     }
 }
