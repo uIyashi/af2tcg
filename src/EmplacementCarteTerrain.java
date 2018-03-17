@@ -12,6 +12,7 @@ abstract public class EmplacementCarteTerrain
     protected ImageView emplacement;
     protected boolean empty;
     protected Text text;
+    protected Carte carte;
 
     public EmplacementCarteTerrain(Group root, int x, int y)
     {
@@ -21,10 +22,13 @@ abstract public class EmplacementCarteTerrain
         emplacement.setX(x);
         emplacement.setY(y);
         empty = true;
+        carte = null;
         text.setText("");
         text.setFont(new Font("Arial", 10));
         text.setVisible(false);
         root.getChildren().add(emplacement);
+
+
     }
 
     /**

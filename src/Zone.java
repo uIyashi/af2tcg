@@ -28,13 +28,4 @@ abstract public class Zone implements Serializable
         return zone.size();
     }
 
-    public List<Carte> getBreak_zone()
-    {
-        return zone;
-    }
-
-    public void setBreak_zone(List<Carte> break_zone)
-    {
-        this.zone = break_zone;
-    }
 }

@@ -108,4 +108,9 @@ public class DemiTerrain
     {
         return owner;
     }
+
+    public BreakZone getBreakZone()
+    {
+        return breakZone;
+    }
 }

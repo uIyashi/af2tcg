@@ -3,7 +3,7 @@ import java.util.List;
 
 
 /**
- * Classe représentant la break zone d'un joueur
+ * Classe représentant la break zone(defausse) d'un joueur
  * @author Wangon Romain "NekoRomain"
  */
 public class BreakZone extends Zone

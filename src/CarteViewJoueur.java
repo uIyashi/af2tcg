@@ -5,10 +5,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.ClipboardContent;
-import javafx.scene.input.DataFormat;
-import javafx.scene.input.Dragboard;
-import javafx.scene.input.TransferMode;
+import javafx.scene.input.*;
 import javafx.util.Duration;
 
 /**
@@ -20,16 +17,18 @@ public class CarteViewJoueur
 {
 
     private ImageView carteView;
+    private Carte carte;
     private DemiTerrain demiTerrainOwner;
     static final DataFormat CARTE_FORMAT = new DataFormat("Carte");
 
     public CarteViewJoueur(Group root, DemiTerrain demiTerrain, Carte carte, int x, int y)
     {
+        this.carte = carte;
         carteView = new ImageView(carte.getImage());
         carteView.setX(0);
         carteView.setY(0);
         this.demiTerrainOwner = demiTerrain;
-        initialisation(root, carte);
+        initialisation(root);
 
         //animation de tirage de la carte
         Timeline timeline = new Timeline();
@@ -40,9 +39,6 @@ public class CarteViewJoueur
                 new KeyFrame(new Duration(500), new KeyValue(carteView.yProperty(), y))
         );
         timeline.play();
-        if(timeline.getStatus() == Animation.Status.STOPPED)
-        {
-        }
 
 
     }
@@ -52,7 +48,7 @@ public class CarteViewJoueur
         return carteView;
     }
     
-    private void initialisation(Group root, Carte carte)
+    private void initialisation(Group root)
     {
         root.getChildren().add(carteView);
 
@@ -88,19 +84,73 @@ public class CarteViewJoueur
                     carteView.setVisible(true);
                 event.consume();
             });
+
+            carteView.setOnMouseReleased(event ->
+            {
+                if (event.getButton() == MouseButton.SECONDARY) {
+                    //TODO gagner mana
+
+
+                    Timeline timeline = new Timeline();
+                    timeline.getKeyFrames().addAll(
+                            new KeyFrame(Duration.ZERO, new KeyValue(carteView.xProperty(), carteView.getX())),
+                            new KeyFrame(Duration.ZERO, new KeyValue(carteView.yProperty(), carteView.getY())),
+                            new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 1133)),
+                            new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 400))
+                    );
+                    timeline.play();
+                    timeline.setOnFinished(eventTime ->
+                    {
+                        this.carteView.setVisible(false);
+                        this.carteView = null;
+                        int ind = demiTerrainOwner.getMainView().indexOf(this);
+                        demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
+                        demiTerrainOwner.getOwner().getBreak_zone().add(carte);
+                        carte = null;
+                        demiTerrainOwner.getMainView().remove(this);
+                        demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                        root.getChildren().remove(carteView);
+                    });
+                }
+
+            });
         }
         else //si une carte de type sort, on lui donne d'autre évènement possible
         {
             carteView.setOnMouseReleased(event ->
             {
-                //TODO faire en sort de lancer le sort si possible et de gérer les liste de carte et les pv
-                System.err.println("SORT LANCER !");
-                this.carteView.setVisible(false);
-                this.carteView = null;
-                int ind = demiTerrainOwner.getMainView().indexOf(this);
-                demiTerrainOwner.getMainView().remove(this);
-                demiTerrainOwner.miseAJourMainSelonIndice(ind);
-                root.getChildren().remove(carteView);
+
+                if(event.getButton() == MouseButton.PRIMARY)
+                {
+                    //TODO faire en sort de lancer le sort si possible et de gérer les liste de carte et les pv
+                    System.err.println("SORT LANCER !");
+                }
+                else if (event.getButton() == MouseButton.SECONDARY)
+                {
+                    //TODO gagner mana
+                }
+
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(carteView.xProperty(), carteView.getX())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(carteView.yProperty(), carteView.getY())),
+                        new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 1133)),
+                        new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 400))
+                );
+                timeline.play();
+                timeline.setOnFinished(eventTime ->
+                {
+                    this.carteView.setVisible(false);
+                    this.carteView = null;
+                    int ind = demiTerrainOwner.getMainView().indexOf(this);
+                    demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
+                    demiTerrainOwner.getOwner().getBreak_zone().add(carte);
+                    carte = null;
+                    demiTerrainOwner.getMainView().remove(this);
+                    demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                    root.getChildren().remove(carteView);
+                });
+
             });
         }
 

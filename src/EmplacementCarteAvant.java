@@ -43,6 +43,7 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
             {
                 final Dragboard dragBroard = event.getDragboard();
                 Carte carte = (Carte)dragBroard.getContent(CarteViewJoueur.CARTE_FORMAT);
+                this.carte = carte;
                 if(carte instanceof Avant )
                 {
                     Avant cAvant = (Avant)carte;

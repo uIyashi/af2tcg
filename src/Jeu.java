@@ -49,10 +49,14 @@ public class Jeu extends Application
         Joueur j = new Joueur();
         DemiTerrain test = new DemiTerrain(root, j);
         EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
-        Carte c = new A_172C(j);
-        Carte c2 = new B_131C(j);
-        test.addCarteMainView(root, c);
-        test.addCarteMainView(root, c2);
+        for(int i =0; i< 10; i++)
+        {
+            test.addCarteMainView(root, new A_172C(j));
+        }
+       // Carte c = new A_172C(j);
+        //Carte c2 = new B_131C(j);
+        //test.addCarteMainView(root, c);
+        //test.addCarteMainView(root, c2);
         primaryStage.show();
     }
 }

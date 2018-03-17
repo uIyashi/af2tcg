@@ -104,4 +104,9 @@ public class Joueur implements Serializable{
     {
         return deck;
     }
+
+    public List<Carte> getBreak_zone() {
+        return break_zone;
+    }
+
 }
