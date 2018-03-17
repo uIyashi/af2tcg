@@ -128,6 +128,7 @@ public class CarteViewJoueur
                 else if (event.getButton() == MouseButton.SECONDARY)
                 {
                     //TODO gagner mana
+                    //faut gagner le mana
                 }
 
                 Timeline timeline = new Timeline();
