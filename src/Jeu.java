@@ -1,6 +1,8 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.util.logging.Level;
@@ -12,6 +14,8 @@ import java.util.logging.Logger;
 
 public class Jeu extends Application
 {
+    public static DescriptionView carteDescriptionBox;
+
     public static void main(String[] args)
     {
         launch(args);
@@ -20,12 +24,15 @@ public class Jeu extends Application
     @Override
     public void start(Stage primaryStage)
     {
+
+
         /*--------------TEST------------------*/
         primaryStage.setTitle("af2tcg");
 
         Group root = new Group();
-        Scene theScene = new Scene(root);
+        Scene theScene = new Scene(root, 1280, 920);
         primaryStage.setScene(theScene);
+        carteDescriptionBox = new DescriptionView(root);
 
        /* Canvas canvas = new Canvas(1200, 720);
         root.getChildren().add(canvas);
@@ -48,10 +55,14 @@ public class Jeu extends Application
 
         Joueur j = new Joueur();
         DemiTerrain test = new DemiTerrain(root, j);
+
         EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
-        for(int i =0; i< 10; i++)
+        for(int i =0; i< 8; i++)
         {
-            test.addCarteMainView(root, new A_172C(j));
+            if(i < 4)
+                test.addCarteMainView(root, new A_172C(j));
+            else
+                test.addCarteMainView(root, new B_131C(j));
         }
        // Carte c = new A_172C(j);
         //Carte c2 = new B_131C(j);

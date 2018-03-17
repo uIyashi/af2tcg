@@ -1,7 +1,11 @@
 
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.Group;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
+import javafx.util.Duration;
 
 /**
  * Classe représantnant un emplacement de carte Avant
@@ -64,6 +68,40 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
                 event.setDropCompleted(success);
                 event.consume();
             }
+        });
+
+        emplacement.setOnMouseEntered(event ->
+        {
+            if(!empty)
+            {
+                Jeu.carteDescriptionBox.setTextBoxCarte(carte);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 720)),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 700))
+                );
+                timeline.play();
+            }
+
+        });
+
+        emplacement.setOnMouseExited(event ->
+        {
+            if(!empty)
+            {
+                Jeu.carteDescriptionBox.setTextBoxCarte(carte);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 1200)),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 1200))
+                );
+                timeline.play();
+            }
+
         });
     }
 
