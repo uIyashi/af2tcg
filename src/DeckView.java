@@ -30,20 +30,23 @@ public class DeckView
 
         carteDeckView.setOnMouseReleased(event ->
         {
-
-           Joueur j = demiTerrain.getOwner();
-           if(j.getDeck().size() > 0)
-           {
-               if(j != null)
-               {
-                   for(Carte c : j.pioche(1))
-                       demiTerrain.addCarteMainView(root, c);
-               }
-               if(j.getDeck().size() == 0)
-               {
-                   carteDeckView.setVisible(false);
-               }
-           }
+            if(!demiTerrain.getOwner().isaPiocher())
+            {
+                 Joueur j = demiTerrain.getOwner();
+                  if(j.getDeck().size() > 0)
+                {
+                    if(j != null)
+                    {
+                        for(Carte c : j.pioche(1))
+                            demiTerrain.addCarteMainView(root, c);
+                    }
+                    if(j.getDeck().size() == 0)
+                    {
+                        carteDeckView.setVisible(false);
+                     }
+                  }
+                  j.setaPiocher(true);
+            }
 
 
         });

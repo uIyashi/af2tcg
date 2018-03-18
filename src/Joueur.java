@@ -1,7 +1,5 @@
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Joueur implements Serializable{
 
@@ -14,8 +12,10 @@ public class Joueur implements Serializable{
     private List<Soutien> terrain_soutien;
     private List<Carte> main_joueur;
     private Joueur adversaire;
+    private boolean aPiocher;
 
     public Joueur() {
+        aPiocher = false;
         deck = new ArrayList<>();
         break_zone = new ArrayList<>();
         damage_zone = new ArrayList<>();
@@ -52,6 +52,13 @@ public class Joueur implements Serializable{
             deck.remove(0);
         }
         return cartesPiochee;
+    }
+
+    public void melangerDeck()
+    {
+        List<Carte> deckMelanger = new ArrayList<>(deck);
+        Collections.shuffle(deckMelanger);
+        deck = deckMelanger;
     }
 
     public void defausserCarteDeLaMain(){
@@ -109,4 +116,13 @@ public class Joueur implements Serializable{
         return break_zone;
     }
 
+    public boolean isaPiocher()
+    {
+        return aPiocher;
+    }
+
+    public void setaPiocher(boolean value)
+    {
+        aPiocher = value;
+    }
 }
