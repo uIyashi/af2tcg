@@ -2,6 +2,7 @@ import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,6 +82,9 @@ public class DemiTerrain
     {
         CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 194 + mainView.size()* 110,730);
         mainView.add(iView);
+        //TODO a modifier
+       // Jeu.envoieMessage("addCarte:" + (194 + mainView.size()* 110) +":"+730 + ":"+carte.getImageReference());
+
     }
 
     public ImageView getImageTerrain()

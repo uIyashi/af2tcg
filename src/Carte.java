@@ -39,4 +39,9 @@ abstract public class Carte implements Serializable{
     {
         return type;
     }
+
+    public String getImageReference()
+    {
+        return imageReference;
+    }
 }
