@@ -27,6 +27,11 @@ public class Joueur implements Serializable{
         deck.add(new A_172C(this));
         deck.add(new A_172C(this));
         deck.add(new B_131C(this));
+        deck.add(new A_172C(this));
+        deck.add(new A_172C(this));
+        deck.add(new B_131C(this));
+        deck.add(new A_172C(this));
+        deck.add(new A_172C(this));
         //pioche(5);
     }
 

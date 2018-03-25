@@ -21,7 +21,7 @@ public abstract class TraitementMessage
     /**
      * Méthode qui va traiter les messages reçu et faire des actions en conséquences
      */
-    public static void traitementMessage(Group root, DemiTerrain demiTerrain)
+    public static void traitementMessage(Group root, Terrain terrain)
     {
         new Thread(()->
         {
@@ -49,11 +49,10 @@ public abstract class TraitementMessage
                             String [] resultat = strCourant.split(":");
                             if(resultat[0].equals("addCarte"))
                             {
-                                int x = Integer.parseInt(resultat[1]);
-                                int y = Integer.parseInt(resultat[2]);
+
                                 Platform.runLater(()->
                                 {
-                                    addC(root, x, y, resultat[3]);
+                                    addC(root, resultat[1], terrain.getDemiTerrainAdversaire());
                                 });
                             }
                         }
@@ -71,11 +70,11 @@ public abstract class TraitementMessage
 
     }
 
-    private static void addC(Group root, int x, int y, String nom)
+    private static void addC(Group root, String nom, DemiTerrain terrainAdversaire)
     {
-        ImageView v = new ImageView(ImageCarte.getImage(nom));
-        v.setX(x);
-        v.setY( y- 400 -v.getImage().getWidth());
-        root.getChildren().add(v);
+        Joueur ad = terrainAdversaire.getOwner();
+        Carte c = Carte.creationCarte(nom, ad);
+        CarteViewJoueur cv = new CarteViewJoueur(root, terrainAdversaire, c, 157 + terrainAdversaire.getMainView().size()* 86,18, true);
+        terrainAdversaire.getMainView().add(cv);
     }
 }

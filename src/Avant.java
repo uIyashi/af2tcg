@@ -26,4 +26,5 @@ abstract public class Avant extends Carte {
     public String toString(){
         return "[" + nom + " ~" + categorie + "~ | " + couleur + " " + cout + " | " + puissance + "]";
     }
+
 }

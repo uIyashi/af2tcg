@@ -23,7 +23,7 @@ public class DemiTerrain
     private ZoneTerrainArriere zoneArriere;
     private ZoneTerrainAvant zoneAvant;
     private DeckView deckView;
-    private ImageView imageTerrain;
+
     private Joueur owner;
     private List<CarteViewJoueur> mainView;
 
@@ -35,27 +35,28 @@ public class DemiTerrain
         owner = null;
         breakZone = new BreakZone();
         damageZone = new DamageZone();
-        zoneArriere = new ZoneTerrainArriere(root);
-        zoneAvant = new ZoneTerrainAvant(root);
+        zoneArriere = new ZoneTerrainArriere(root, false);
+        zoneAvant = new ZoneTerrainAvant(root, false);
         mainView = new ArrayList<CarteViewJoueur>();
-        deckView = new DeckView(root, this);
-        initialisation(root);
+        deckView = new DeckView(root, this, false);
     }
+
     /**
      * Constructeur : Va créer les zones et va associé un joueur au terrain
-     * @param player joueur à qui appartient ce terrain
+     * @param root le group defaut
+     * @param player le joueur qui va posséder le terrain
+     * @param adversaire si le joueur qui possède le demiTerrai est l'adversaire
      */
-    public DemiTerrain(Group root, Joueur player)
+    public DemiTerrain(Group root, Joueur player, boolean adversaire)
     {
 
         owner = player;
         breakZone = new BreakZone();
         damageZone = new DamageZone();
-        zoneArriere = new ZoneTerrainArriere(root);
-        zoneAvant = new ZoneTerrainAvant(root);
+        zoneArriere = new ZoneTerrainArriere(root, adversaire);
+        zoneAvant = new ZoneTerrainAvant(root, adversaire);
         mainView = new ArrayList<CarteViewJoueur>();
-        deckView = new DeckView(root, this);
-        initialisation(root);
+        deckView = new DeckView(root, this, adversaire);
     }
 
     public List<CarteViewJoueur> getMainView()
@@ -63,34 +64,22 @@ public class DemiTerrain
         return mainView;
     }
 
-    /**
-     * Méthode privé d'initalisation de l'imageView
-     * @param root group de la fenêtre de jeu
-     */
-    private void initialisation(Group root)
-    {
-        imageTerrain = new ImageView(new Image("terrain.jpg"));
-        root.getChildren().add(0, imageTerrain);
-    }
 
     /**
      * Méthode qui va ajouter une ImageView pour afficher la carte passer en paramètre
      * @param root le groupe qui va contenir les ImageView
      * @param carte la carte à afficher
      */
-    public void addCarteMainView(Group root, Carte carte)
+    public void addCarteMainView(Group root, Carte carte, boolean adversaire)
     {
-        CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 194 + mainView.size()* 110,730);
+        CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 157 + mainView.size()* 86,664, adversaire);
         mainView.add(iView);
         //TODO a modifier
-       // Jeu.envoieMessage("addCarte:" + (194 + mainView.size()* 110) +":"+730 + ":"+carte.getImageReference());
+        Jeu.envoieMessage("addCarte:" +carte.getImageReference());
 
     }
 
-    public ImageView getImageTerrain()
-    {
-        return imageTerrain;
-    }
+
 
     /**
      * Methode que va déplacer les cartes dans la main après en avoir jouer une
@@ -99,7 +88,7 @@ public class DemiTerrain
     public void miseAJourMainSelonIndice(int i)
     {
         for(int j = i; j <mainView.size(); j++)
-            mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 110, 730);
+            mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 86, 664);
 
     }
 

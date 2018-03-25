@@ -21,55 +21,55 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
      * @param x la coordonnée x de l'enplacement
      * @param y la coordonnée y de l'enplacement
      */
-    public EmplacementCarteAvant(Group root, int x, int y)
+    public EmplacementCarteAvant(Group root, int x, int y, boolean adversaire)
     {
         super(root, x, y);
         emplacement.setImage(ImageCarte.EMPLACEMENT_AVANT.getImage());
         text.setX(emplacement.getX()+20);
         text.setY(emplacement.getY()+70);
 
-        emplacement.setOnDragOver(event->
+        if(!adversaire)
         {
-            System.err.println("DnD Over detected");
-            final Dragboard dragBroard = event.getDragboard();
-            final Object o = event.getGestureSource();
-            System.err.println(o != emplacement);
-            if(o != emplacement && empty && dragBroard.getString() == "avant")
-                event.acceptTransferModes(TransferMode.MOVE);
-            event.consume();
-        });
-
-        emplacement.setOnDragDropped(event->
-        {
-            System.err.println("DnD Drop detected");
-            boolean success = false;
-            try
+            emplacement.setOnDragOver(event->
             {
                 final Dragboard dragBroard = event.getDragboard();
-                Carte carte = (Carte)dragBroard.getContent(CarteViewJoueur.CARTE_FORMAT);
-                this.carte = carte;
-                if(carte instanceof Avant )
-                {
-                    Avant cAvant = (Avant)carte;
-                    cAvant.owner.getTerrain_avant().add(cAvant);
-                }
-
-                emplacement.setImage(carte.getImage());
-                System.out.println(dragBroard.getString());
-                success = true;
-                setEmplacement(empty);
-            }
-            catch (Exception ex)
-            {
-                ex.printStackTrace();
-            }
-            finally
-            {
-                event.setDropCompleted(success);
+                final Object o = event.getGestureSource();
+                if(o != emplacement && empty && dragBroard.getString() == "avant")
+                    event.acceptTransferModes(TransferMode.MOVE);
                 event.consume();
-            }
-        });
+            });
 
+            emplacement.setOnDragDropped(event->
+            {
+                boolean success = false;
+                try
+                {
+                    final Dragboard dragBroard = event.getDragboard();
+                    Carte carte = (Carte)dragBroard.getContent(CarteViewJoueur.CARTE_FORMAT);
+                    this.carte = carte;
+                    if(carte instanceof Avant )
+                    {
+                        Avant cAvant = (Avant)carte;
+                        cAvant.owner.getTerrain_avant().add(cAvant);
+                    }
+                    emplacement.setImage(carte.getImage());
+                    success = true;
+                    setEmplacement(empty);
+                }
+                catch (Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+                finally
+                {
+                    event.setDropCompleted(success);
+                    event.consume();
+                }
+            });
+        }
+
+
+        //animation box description apparait
         emplacement.setOnMouseEntered(event ->
         {
             if(!empty)
@@ -79,14 +79,15 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
                 timeline.getKeyFrames().addAll(
                         new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
                         new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
-                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 720)),
-                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 700))
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 670)),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 650))
                 );
                 timeline.play();
             }
 
         });
 
+        //animation box description disparait
         emplacement.setOnMouseExited(event ->
         {
             if(!empty)

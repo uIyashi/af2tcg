@@ -1,6 +1,7 @@
 import javafx.application.Application;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -49,26 +50,21 @@ public class Jeu extends Application
             client();
         /*--------------TEST------------------*/
         primaryStage.setTitle("af2tcg");
-
+        primaryStage.setResizable(false);
         Group root = new Group();
-        Scene theScene = new Scene(root, 1280, 920);
+        Scene theScene = new Scene(root, 896, 784);
         primaryStage.setScene(theScene);
         carteDescriptionBox = new DescriptionView(root);
         Joueur j = new Joueur();
         j.melangerDeck();
-        DemiTerrain test = new DemiTerrain(root, j);
-
-        EmplacementCarteAvant e = new EmplacementCarteAvant(root, 224, 381);
-        for(int i =0; i< 8; i++)
+        Terrain test = new Terrain(root, j);
+        for(int i =0; i< 7; i++)
         {
-            if(i < 4)
-                test.addCarteMainView(root, new A_172C(j));
-            else
-                test.addCarteMainView(root, new B_131C(j));
+            Carte c = j.pioche(1)[0];
+            test.getDemiTerrainJoueur().addCarteMainView(root, c, false);
         }
 
         primaryStage.show();
-
         //test de reception de message
         TraitementMessage.traitementMessage(root, test);
     }

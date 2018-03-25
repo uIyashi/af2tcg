@@ -10,12 +10,12 @@ public class DescriptionView
 
     public DescriptionView(Group root)
     {
-        rec = new Rectangle(170, 300);
+        rec = new Rectangle(125, 300);
         text = new Text();
         rec.setArcHeight(10);
         rec.setArcWidth(10);
         rec.setX(2);
-        rec.setY(1000);
+        rec.setY(800);
         rec.setFill(Color.GRAY);
         rec.setOpacity(0.7);
         rec.setVisible(true);

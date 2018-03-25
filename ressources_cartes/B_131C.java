@@ -12,4 +12,5 @@ public class B_131C extends Avant {
         imageReference = ImageCarte.CARTE_B_131C.name();
     }
 
+
 }

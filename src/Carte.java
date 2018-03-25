@@ -44,4 +44,13 @@ abstract public class Carte implements Serializable{
     {
         return imageReference;
     }
+
+    public static Carte creationCarte(String nom, Joueur j)
+    {
+        if(nom.equals(ImageCarte.CARTE_A_172C.name()))
+            return new A_172C(j);
+        if(nom.equals(ImageCarte.CARTE_B_131C.name()))
+            return new B_131C(j);
+        return null;
+    };
 }

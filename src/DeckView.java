@@ -11,10 +11,10 @@ public class DeckView
     private DemiTerrain demiTerrain;
     private ImageView carteDeckView;
 
-    public DeckView(Group root, DemiTerrain demiTerrain)
+    public DeckView(Group root, DemiTerrain demiTerrain, boolean adversaire)
     {
         this.demiTerrain = demiTerrain;
-         initialisation(root);
+         initialisation(root, adversaire);
     }
 
     public ImageView getCarteDeckView()
@@ -22,33 +22,41 @@ public class DeckView
         return carteDeckView;
     }
 
-    private void initialisation(Group root)
+    private void initialisation(Group root, boolean adversaire)
     {
-        carteDeckView = new ImageView(ImageCarte.DECK_FULL.getImage());
-        carteDeckView.setX(1133); carteDeckView.setY(550);
-        root.getChildren().add(carteDeckView);
-
-        carteDeckView.setOnMouseReleased(event ->
+        if(!adversaire)
         {
-            if(!demiTerrain.getOwner().isaPiocher())
+            carteDeckView = new ImageView(ImageCarte.DECK_FULL.getImage());
+            carteDeckView.setX(793); carteDeckView.setY(525);
+            root.getChildren().add(carteDeckView);
+            carteDeckView.setOnMouseReleased(event ->
             {
-                 Joueur j = demiTerrain.getOwner();
-                  if(j.getDeck().size() > 0)
+                if(!demiTerrain.getOwner().isaPiocher() && demiTerrain.getOwner().getMain_joueur().size() < 7)
                 {
-                    if(j != null)
+                    Joueur j = demiTerrain.getOwner();
+                    if(j.getDeck().size() > 0)
                     {
-                        for(Carte c : j.pioche(1))
-                            demiTerrain.addCarteMainView(root, c);
+                        if(j != null)
+                        {
+                            for(Carte c : j.pioche(1))
+                                demiTerrain.addCarteMainView(root, c, adversaire);
+                        }
+                        if(j.getDeck().size() == 0)
+                        {
+                            carteDeckView.setVisible(false);
+                        }
                     }
-                    if(j.getDeck().size() == 0)
-                    {
-                        carteDeckView.setVisible(false);
-                     }
-                  }
-                  j.setaPiocher(true);
-            }
+                    j.setaPiocher(true);
+                }
 
 
-        });
+            });
+        }
+        else
+        {
+            carteDeckView = new ImageView(ImageCarte.DECK_FULL.getImage());
+            carteDeckView.setX(33); carteDeckView.setY(153);
+            root.getChildren().add(carteDeckView);
+        }
     }
 }

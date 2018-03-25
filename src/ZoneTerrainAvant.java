@@ -11,10 +11,19 @@ public class ZoneTerrainAvant
     EmplacementCarteAvant terrainAvant[]; //tableau d'emplacement de carte Avant
     //TODO initilaliser les zones et bien les positionner sur l'ecran dans le constructeur
 
-    public ZoneTerrainAvant(Group root)
+    public ZoneTerrainAvant(Group root, boolean adversaire)
     {
         terrainAvant = new EmplacementCarteAvant[EMPLACEMENT_AVANT_MAX];
-        for(int i = 0; i < EMPLACEMENT_AVANT_MAX; i++)
-            terrainAvant[i] = new EmplacementCarteAvant(root, 224 + i* 123, 381);
+        if(!adversaire)
+        {
+            for(int i = 0; i < EMPLACEMENT_AVANT_MAX; i++)
+                terrainAvant[i] = new EmplacementCarteAvant(root, 157 + i* 86, 407, false);
+        }
+        else
+        {
+            for(int i = 0; i < EMPLACEMENT_AVANT_MAX; i++)
+                terrainAvant[i] = new EmplacementCarteAvant(root, 157 + i* 86, 270, true);
+        }
+
     }
 }

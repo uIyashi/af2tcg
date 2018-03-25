@@ -21,14 +21,14 @@ public class CarteViewJoueur
     private DemiTerrain demiTerrainOwner;
     static final DataFormat CARTE_FORMAT = new DataFormat("Carte");
 
-    public CarteViewJoueur(Group root, DemiTerrain demiTerrain, Carte carte, int x, int y)
+    public CarteViewJoueur(Group root, DemiTerrain demiTerrain, Carte carte, int x, int y, boolean adversaire)
     {
         this.carte = carte;
         carteView = new ImageView(carte.getImage());
         carteView.setX(0);
         carteView.setY(0);
         this.demiTerrainOwner = demiTerrain;
-        initialisation(root);
+        initialisation(root, adversaire);
 
         //animation de tirage de la carte
         Timeline timeline = new Timeline();
@@ -48,55 +48,98 @@ public class CarteViewJoueur
         return carteView;
     }
     
-    private void initialisation(Group root)
+    private void initialisation(Group root, boolean adversaire)
     {
         root.getChildren().add(carteView);
 
-        if(carte.type == "avant") //si une carte de type avant
+        if(!adversaire)
         {
-            //Un drag'nDrop est détecté
-            carteView.setOnDragDetected(mouseEvent->
+            if(carte.type == "avant") //si une carte de type avant
             {
-                carteView.setVisible(false);
-                System.err.println("DnD detected");
-                final Dragboard dragBoard = carteView.startDragAndDrop(TransferMode.MOVE);
-                final ClipboardContent content = new ClipboardContent();
-                content.putImage(carte.getImage());
-                content.putString(carte.getType());
-                content.put(CARTE_FORMAT, carte);
-                dragBoard.setContent(content);
-                mouseEvent.consume();
-            });
-
-            //Un drag'nDrop est fini avec succès
-            carteView.setOnDragDone(event ->
-            {
-                if (event.getTransferMode() == TransferMode.MOVE)
+                //Un drag'nDrop est détecté
+                carteView.setOnDragDetected(mouseEvent->
                 {
-                    this.carteView.setVisible(false);
-                    this.carteView = null;
-                    int ind = demiTerrainOwner.getMainView().indexOf(this);
-                    demiTerrainOwner.getMainView().remove(this);
-                    demiTerrainOwner.miseAJourMainSelonIndice(ind);
-                    root.getChildren().remove(carteView);
-                }
-                else
-                    carteView.setVisible(true);
-                event.consume();
-            });
+                    carteView.setVisible(false);
+                    System.err.println("DnD detected");
+                    final Dragboard dragBoard = carteView.startDragAndDrop(TransferMode.MOVE);
+                    final ClipboardContent content = new ClipboardContent();
+                    content.putImage(carte.getImage());
+                    content.putString(carte.getType());
+                    content.put(CARTE_FORMAT, carte);
+                    dragBoard.setContent(content);
+                    mouseEvent.consume();
+                });
 
-            carteView.setOnMouseReleased(event ->
+                //Un drag'nDrop est fini avec succès
+                carteView.setOnDragDone(event ->
+                {
+                    if (event.getTransferMode() == TransferMode.MOVE)
+                    {
+                        this.carteView.setVisible(false);
+                        this.carteView = null;
+                        int ind = demiTerrainOwner.getMainView().indexOf(this);
+                        demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
+                        demiTerrainOwner.getMainView().remove(this);
+                        demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                        root.getChildren().remove(carteView);
+                    }
+                    else
+                        carteView.setVisible(true);
+                    event.consume();
+                });
+
+                carteView.setOnMouseReleased(event ->
+                {
+                    if (event.getButton() == MouseButton.SECONDARY) {
+                        //TODO gagner mana
+
+
+                        Timeline timeline = new Timeline();
+                        timeline.getKeyFrames().addAll(
+                                new KeyFrame(Duration.ZERO, new KeyValue(carteView.xProperty(), carteView.getX())),
+                                new KeyFrame(Duration.ZERO, new KeyValue(carteView.yProperty(), carteView.getY())),
+                                new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 793)),
+                                new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 407))
+                        );
+                        timeline.play();
+                        timeline.setOnFinished(eventTime ->
+                        {
+                            this.carteView.setVisible(false);
+                            this.carteView = null;
+                            int ind = demiTerrainOwner.getMainView().indexOf(this);
+                            demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
+                            demiTerrainOwner.getOwner().getBreak_zone().add(carte);
+                            carte = null;
+                            demiTerrainOwner.getMainView().remove(this);
+                            demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                            root.getChildren().remove(carteView);
+                        });
+                    }
+
+                });
+            }
+            else //si une carte de type sort, on lui donne d'autre évènement possible
             {
-                if (event.getButton() == MouseButton.SECONDARY) {
-                    //TODO gagner mana
+                carteView.setOnMouseReleased(event ->
+                {
 
+                    if(event.getButton() == MouseButton.PRIMARY)
+                    {
+                        //TODO faire en sort de lancer le sort si possible et de gérer les liste de carte et les pv
+                        System.err.println("SORT LANCER !");
+                    }
+                    else if (event.getButton() == MouseButton.SECONDARY)
+                    {
+                        //TODO gagner mana
+                        //faut gagner le mana
+                    }
 
                     Timeline timeline = new Timeline();
                     timeline.getKeyFrames().addAll(
                             new KeyFrame(Duration.ZERO, new KeyValue(carteView.xProperty(), carteView.getX())),
                             new KeyFrame(Duration.ZERO, new KeyValue(carteView.yProperty(), carteView.getY())),
-                            new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 1133)),
-                            new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 400))
+                            new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 793)),
+                            new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 407))
                     );
                     timeline.play();
                     timeline.setOnFinished(eventTime ->
@@ -111,50 +154,10 @@ public class CarteViewJoueur
                         demiTerrainOwner.miseAJourMainSelonIndice(ind);
                         root.getChildren().remove(carteView);
                     });
-                }
 
-            });
-        }
-        else //si une carte de type sort, on lui donne d'autre évènement possible
-        {
-            carteView.setOnMouseReleased(event ->
-            {
-
-                if(event.getButton() == MouseButton.PRIMARY)
-                {
-                    //TODO faire en sort de lancer le sort si possible et de gérer les liste de carte et les pv
-                    System.err.println("SORT LANCER !");
-                }
-                else if (event.getButton() == MouseButton.SECONDARY)
-                {
-                    //TODO gagner mana
-                    //faut gagner le mana
-                }
-
-                Timeline timeline = new Timeline();
-                timeline.getKeyFrames().addAll(
-                        new KeyFrame(Duration.ZERO, new KeyValue(carteView.xProperty(), carteView.getX())),
-                        new KeyFrame(Duration.ZERO, new KeyValue(carteView.yProperty(), carteView.getY())),
-                        new KeyFrame(new Duration(200), new KeyValue(carteView.xProperty(), 1133)),
-                        new KeyFrame(new Duration(200), new KeyValue(carteView.yProperty(), 400))
-                );
-                timeline.play();
-                timeline.setOnFinished(eventTime ->
-                {
-                    this.carteView.setVisible(false);
-                    this.carteView = null;
-                    int ind = demiTerrainOwner.getMainView().indexOf(this);
-                    demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
-                    demiTerrainOwner.getOwner().getBreak_zone().add(carte);
-                    carte = null;
-                    demiTerrainOwner.getMainView().remove(this);
-                    demiTerrainOwner.miseAJourMainSelonIndice(ind);
-                    root.getChildren().remove(carteView);
                 });
-
-            });
+            }
         }
-
         carteView.setOnMouseEntered(event ->
         {
             Jeu.carteDescriptionBox.setTextBoxCarte(carte);
@@ -162,8 +165,8 @@ public class CarteViewJoueur
             timeline.getKeyFrames().addAll(
                     new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
                     new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 720)),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 700))
+                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 670)),
+                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 650))
             );
             timeline.play();
         });
