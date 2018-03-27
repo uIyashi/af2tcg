@@ -108,4 +108,9 @@ public class DemiTerrain
     {
         return breakZone;
     }
+
+    public ZoneTerrainAvant getZoneAvant()
+    {
+        return zoneAvant;
+    }
 }

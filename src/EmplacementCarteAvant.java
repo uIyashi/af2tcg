@@ -15,15 +15,16 @@ import javafx.util.Duration;
 
 public class EmplacementCarteAvant extends EmplacementCarteTerrain
 {
+
     /**
      * Constructeur : va créer une ImageView qui sera placer au bon emplacement pour accueillir une carte de type Avant
      * @param root le group principale où vont être mis les EnplacementCarteAvant
      * @param x la coordonnée x de l'enplacement
      * @param y la coordonnée y de l'enplacement
      */
-    public EmplacementCarteAvant(Group root, int x, int y, boolean adversaire)
+    public EmplacementCarteAvant(Group root, int x, int y, int ind, boolean adversaire)
     {
-        super(root, x, y);
+        super(root, x, y, ind);
         emplacement.setImage(ImageCarte.EMPLACEMENT_AVANT.getImage());
         text.setX(emplacement.getX()+20);
         text.setY(emplacement.getY()+70);
@@ -38,7 +39,7 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
                     event.acceptTransferModes(TransferMode.MOVE);
                 event.consume();
             });
-
+            //DnD laché sur la case
             emplacement.setOnDragDropped(event->
             {
                 boolean success = false;
@@ -51,6 +52,7 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
                     {
                         Avant cAvant = (Avant)carte;
                         cAvant.owner.getTerrain_avant().add(cAvant);
+                        EnvoieMessage.carteJouerAvant(cAvant, this.getInd());
                     }
                     emplacement.setImage(carte.getImage());
                     success = true;

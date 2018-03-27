@@ -43,7 +43,7 @@ public class DeckView
                             Carte cj[] = j.pioche(1);
                             for(Carte c : cj)
                                 demiTerrain.addCarteMainView(root, c, adversaire);
-                            EnvoieMessage.envoyeMessagePioche(root, cj, demiTerrain, adversaire);
+                            EnvoieMessage.envoyeMessagePioche(cj);
 
                         }
                         if(j.getDeck().size() == 0)

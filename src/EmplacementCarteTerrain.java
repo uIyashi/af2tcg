@@ -13,9 +13,11 @@ abstract public class EmplacementCarteTerrain
     protected boolean empty;
     protected Text text;
     protected Carte carte;
+    protected int ind;
 
-    public EmplacementCarteTerrain(Group root, int x, int y)
+    public EmplacementCarteTerrain(Group root, int x, int y, int ind)
     {
+        this.ind = ind;
         text = new Text();
         emplacement = new ImageView();
         emplacement.setVisible(true);
@@ -46,5 +48,20 @@ abstract public class EmplacementCarteTerrain
             this.empty = false;
         else
             this.empty = true;
+    }
+
+    public ImageView getEmplacement()
+    {
+        return emplacement;
+    }
+
+    public void setCarte(Carte carte)
+    {
+        this.carte = carte;
+    }
+
+    public int getInd()
+    {
+        return ind;
     }
 }

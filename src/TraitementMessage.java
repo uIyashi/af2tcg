@@ -46,12 +46,22 @@ public abstract class TraitementMessage
                         if(!strCourant.equals(""))
                         {
                             String [] resultat = strCourant.split(":");
-                            if(resultat[0].equals("addCarte"))
+                            if(resultat[0].equals("Jouer"))
                             {
-                                Platform.runLater(()->
+                                int i = Integer.parseInt(resultat[1]);
+                                try
                                 {
-                                    addC(root, resultat[1], terrain.getDemiTerrainAdversaire());
-                                });
+                                    Carte c = (Carte)Jeu.inFromClient.readObject();
+                                    Platform.runLater(()->
+                                    {
+                                        carteJouerAvant(c, i, terrain.getDemiTerrainAdversaire());
+                                    });
+                                }
+                                catch (ClassNotFoundException ex)
+                                {
+                                    ex.printStackTrace();
+                                }
+
                             }
                             if(resultat[0].equals("Carte"))
                             {
@@ -83,13 +93,7 @@ public abstract class TraitementMessage
 
     }
 
-    private static void addC(Group root, String nom, DemiTerrain terrainAdversaire)
-    {
-        Joueur ad = terrainAdversaire.getOwner();
-        Carte c = Carte.creationCarte(nom, ad);
-        CarteViewJoueur cv = new CarteViewJoueur(root, terrainAdversaire, c, 157 + terrainAdversaire.getMainView().size()* 86,18, true);
-        terrainAdversaire.getMainView().add(cv);
-    }
+
     private static void addC(Group root, Carte[] c, DemiTerrain terrainAdversaire)
     {
         Joueur ad = terrainAdversaire.getOwner();
@@ -102,5 +106,15 @@ public abstract class TraitementMessage
 
     }
 
+    private static void carteJouerAvant(Carte c, int i, DemiTerrain terrainAdversaire)
+    {
+        if(c instanceof Avant)
+        {
+            Avant cAvant = (Avant)c;
+            terrainAdversaire.getOwner().getTerrain_avant().add(cAvant);
+            terrainAdversaire.getZoneAvant().getTerrainAvant()[i].getEmplacement().setImage(c.getImage());
+            terrainAdversaire.getZoneAvant().getTerrainAvant()[i].setCarte(c);
+        }
+    }
 
 }

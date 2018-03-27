@@ -12,7 +12,7 @@ public abstract class EnvoieMessage
     {
         Jeu.out.println(str);
     }
-    public static void envoyeMessagePioche(Group root, Carte cartes[], DemiTerrain demiTerrain, boolean adversaire)
+    public static void envoyeMessagePioche(Carte cartes[])
     {
         envoieMessage("Carte");
         Timeline timeline = new Timeline(new KeyFrame(
@@ -29,5 +29,23 @@ public abstract class EnvoieMessage
                 }));
         timeline.play();
 
+    }
+
+    public static void carteJouerAvant(Carte c, int i)
+    {
+        envoieMessage("Jouer:" + i);
+        Timeline timeline = new Timeline(new KeyFrame(
+                Duration.millis(300),
+                ae -> {
+                    try
+                    {
+                        Jeu.outToClient.writeObject(c);
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                }));
+        timeline.play();
     }
 }

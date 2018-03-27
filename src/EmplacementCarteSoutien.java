@@ -11,9 +11,9 @@ public class EmplacementCarteSoutien extends EmplacementCarteTerrain
      * @param x la coordonnée x de l'enplacement
      * @param y la coordonnée y de l'enplacement
      */
-    public EmplacementCarteSoutien(Group root, int x, int y)
+    public EmplacementCarteSoutien(Group root, int x, int y, int ind)
     {
-        super(root, x, y);
+        super(root, x, y, ind);
         /*--Mise en place des évènement pour les Drag'nDrop--*/
         //lorsque qu'on survole l'ImageView pendant un D'nD
         //TODO Modifier le drag and drop pour récupe la carte pour lancer les bonne méthode

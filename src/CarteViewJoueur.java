@@ -160,32 +160,33 @@ public class CarteViewJoueur
 
                 });
             }
-        }
-        carteView.setOnMouseEntered(event ->
-        {
-            Jeu.carteDescriptionBox.setTextBoxCarte(carte);
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 670)),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 650))
-            );
-            timeline.play();
-        });
+            carteView.setOnMouseEntered(event ->
+            {
+                Jeu.carteDescriptionBox.setTextBoxCarte(carte);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 670)),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 650))
+                );
+                timeline.play();
+            });
 
-        carteView.setOnMouseExited(event ->
-        {
-            Jeu.carteDescriptionBox.setTextBoxCarte(carte);
-            Timeline timeline = new Timeline();
-            timeline.getKeyFrames().addAll(
-                    new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
-                    new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 1200)),
-                    new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 1200))
-            );
-            timeline.play();
-        });
+            carteView.setOnMouseExited(event ->
+            {
+                Jeu.carteDescriptionBox.setTextBoxCarte(carte);
+                Timeline timeline = new Timeline();
+                timeline.getKeyFrames().addAll(
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), Jeu.carteDescriptionBox.getRec().getY())),
+                        new KeyFrame(Duration.ZERO, new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), Jeu.carteDescriptionBox.getText().getY())),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getText().yProperty(), 1200)),
+                        new KeyFrame(new Duration(200), new KeyValue(Jeu.carteDescriptionBox.getRec().yProperty(), 1200))
+                );
+                timeline.play();
+            });
+        }
+
 
     }
 

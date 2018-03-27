@@ -1,5 +1,3 @@
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
@@ -9,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -54,6 +51,7 @@ public class Jeu extends Application
     {
         menu(primaryStage);
         primaryStage.setTitle("af2tcg");
+        primaryStage.getIcons().add(new Image("icon.png"));
         primaryStage.setResizable(false);
         primaryStage.show();
 
@@ -237,7 +235,7 @@ public class Jeu extends Application
         Carte[] c = j.pioche(3);
         for(Carte cc : c)
             test.getDemiTerrainJoueur().addCarteMainView(root, cc, false);
-        EnvoieMessage.envoyeMessagePioche(root, c, test.getDemiTerrainJoueur(), false);
+        EnvoieMessage.envoyeMessagePioche(c);
         TraitementMessage.traitementMessage(root, test);
     }
 
