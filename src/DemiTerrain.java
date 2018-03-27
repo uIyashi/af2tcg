@@ -75,7 +75,9 @@ public class DemiTerrain
         CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 157 + mainView.size()* 86,664, adversaire);
         mainView.add(iView);
         //TODO a modifier
-        Jeu.envoieMessage("addCarte:" +carte.getImageReference());
+        //Jeu.envoieMessage("Carte:");
+
+
 
     }
 

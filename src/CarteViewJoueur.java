@@ -24,7 +24,10 @@ public class CarteViewJoueur
     public CarteViewJoueur(Group root, DemiTerrain demiTerrain, Carte carte, int x, int y, boolean adversaire)
     {
         this.carte = carte;
-        carteView = new ImageView(carte.getImage());
+        if(!adversaire)
+            carteView = new ImageView(carte.getImage());
+        else
+            carteView = new ImageView(ImageCarte.CARTE_DOS.getImage());
         carteView.setX(0);
         carteView.setY(0);
         this.demiTerrainOwner = demiTerrain;

@@ -45,15 +45,28 @@ public abstract class TraitementMessage
                         }
                         if(!strCourant.equals(""))
                         {
-                            System.out.println("Message reçu : " + strCourant);
                             String [] resultat = strCourant.split(":");
                             if(resultat[0].equals("addCarte"))
                             {
-
                                 Platform.runLater(()->
                                 {
                                     addC(root, resultat[1], terrain.getDemiTerrainAdversaire());
                                 });
+                            }
+                            if(resultat[0].equals("Carte"))
+                            {
+                                try
+                                {
+                                    Carte[] c = (Carte[])Jeu.inFromClient.readObject();
+                                    Platform.runLater(()->
+                                    {
+                                        addC(root, c, terrain.getDemiTerrainAdversaire());
+                                    });
+                                }
+                                catch (ClassNotFoundException e)
+                                {
+                                    e.printStackTrace();
+                                }
                             }
                         }
 
@@ -77,4 +90,17 @@ public abstract class TraitementMessage
         CarteViewJoueur cv = new CarteViewJoueur(root, terrainAdversaire, c, 157 + terrainAdversaire.getMainView().size()* 86,18, true);
         terrainAdversaire.getMainView().add(cv);
     }
+    private static void addC(Group root, Carte[] c, DemiTerrain terrainAdversaire)
+    {
+        Joueur ad = terrainAdversaire.getOwner();
+        for(Carte cc : c)
+        {
+            CarteViewJoueur cv = new CarteViewJoueur(root, terrainAdversaire, cc, 157 + terrainAdversaire.getMainView().size()* 86,18, true);
+            terrainAdversaire.getMainView().add(cv);
+        }
+
+
+    }
+
+
 }

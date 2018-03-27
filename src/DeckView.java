@@ -1,6 +1,8 @@
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 
+import java.io.IOException;
+
 /**
  * Classe qui contient la view pour afficher le deck à l'écran et ajouter les animations concerner
  * @author Wangon Romain "NekoRomain"
@@ -38,8 +40,11 @@ public class DeckView
                     {
                         if(j != null)
                         {
-                            for(Carte c : j.pioche(1))
+                            Carte cj[] = j.pioche(1);
+                            for(Carte c : cj)
                                 demiTerrain.addCarteMainView(root, c, adversaire);
+                            EnvoieMessage.envoyeMessagePioche(root, cj, demiTerrain, adversaire);
+
                         }
                         if(j.getDeck().size() == 0)
                         {
