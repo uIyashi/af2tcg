@@ -24,11 +24,11 @@ public class Joueur implements Serializable{
         main_joueur = new ArrayList<>();
 
         //TODO A ENLEVER
-        deck.add(new A_172C(this));
-        deck.add(new A_172C(this));
         deck.add(new B_131C(this));
-        deck.add(new A_172C(this));
-        deck.add(new A_172C(this));
+        deck.add(new B_131C(this));
+        deck.add(new B_131C(this));
+        deck.add(new B_131C(this));
+        deck.add(new B_131C(this));
         deck.add(new B_131C(this));
         deck.add(new A_172C(this));
         deck.add(new A_172C(this));
@@ -129,5 +129,17 @@ public class Joueur implements Serializable{
     public void setaPiocher(boolean value)
     {
         aPiocher = value;
+    }
+
+    public void removeCarteMainWithId(Carte c)
+    {
+        Carte rem = null;
+        for(int i = 0; i < main_joueur.size(); i++)
+        {
+            if(c.getId() == main_joueur.get(i).getId())
+                rem = main_joueur.get(i);
+        }
+        if(rem != null)
+            main_joueur.remove(rem);
     }
 }

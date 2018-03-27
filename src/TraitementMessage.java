@@ -2,11 +2,16 @@
  * @author Wangon Romain "NekoRomain"
  */
 
+import javafx.animation.Animation;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,7 +59,7 @@ public abstract class TraitementMessage
                                     Carte c = (Carte)Jeu.inFromClient.readObject();
                                     Platform.runLater(()->
                                     {
-                                        carteJouerAvant(c, i, terrain.getDemiTerrainAdversaire());
+                                        carteJouerAvant(root, c, i, terrain.getDemiTerrainAdversaire());
                                     });
                                 }
                                 catch (ClassNotFoundException ex)
@@ -101,19 +106,46 @@ public abstract class TraitementMessage
         {
             CarteViewJoueur cv = new CarteViewJoueur(root, terrainAdversaire, cc, 157 + terrainAdversaire.getMainView().size()* 86,18, true);
             terrainAdversaire.getMainView().add(cv);
+            terrainAdversaire.getOwner().getMain_joueur().add(cc);
         }
 
 
     }
 
-    private static void carteJouerAvant(Carte c, int i, DemiTerrain terrainAdversaire)
+    private static void carteJouerAvant(Group root, Carte c, int i, DemiTerrain terrainAdversaire)
     {
         if(c instanceof Avant)
         {
             Avant cAvant = (Avant)c;
+            CarteViewJoueur cv = terrainAdversaire.viewCarteMain(cAvant);
             terrainAdversaire.getOwner().getTerrain_avant().add(cAvant);
             terrainAdversaire.getZoneAvant().getTerrainAvant()[i].getEmplacement().setImage(c.getImage());
             terrainAdversaire.getZoneAvant().getTerrainAvant()[i].setCarte(c);
+            int ind = terrainAdversaire.getMainView().indexOf(cv);
+            cv.getCarteView().setVisible(false);
+            terrainAdversaire.getOwner().removeCarteMainWithId(c);
+            terrainAdversaire.removeWithId(c);
+            System.err.println("taille main : " + terrainAdversaire.getOwner().getMain_joueur().size());
+            /*
+             for(Carte cc : terrainAdversaire.getOwner().getMain_joueur())
+                       if(cc.getId() == c.getId())
+                           terrainAdversaire.getOwner().getMain_joueur().remove(cc);
+                   for(CarteViewJoueur carteViewJoueur : terrainAdversaire.getMainView())
+                       if(carteViewJoueur.getCarte().getId() == cv.getCarte().getId())
+                           terrainAdversaire.getMainView().remove(cv);
+             */
+
+            terrainAdversaire.miseAJourMainSelonIndice(ind, true);
+            root.getChildren().remove(cv.getCarteView());
+
+
+
+
+
+
+
+
+
         }
     }
 

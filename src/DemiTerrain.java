@@ -87,10 +87,16 @@ public class DemiTerrain
      * Methode que va déplacer les cartes dans la main après en avoir jouer une
      * @param i l'indice de la carte jouer
      */
-    public void miseAJourMainSelonIndice(int i)
+    public void miseAJourMainSelonIndice(int i, boolean adversaire)
     {
         for(int j = i; j <mainView.size(); j++)
-            mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 86, 664);
+        {
+            if(!adversaire)
+                mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 86, 664);
+            else
+                mainView.get(j).deplacerView(mainView.get(j).getCarteView().getX() - 86, 18);
+        }
+
 
     }
 
@@ -112,5 +118,31 @@ public class DemiTerrain
     public ZoneTerrainAvant getZoneAvant()
     {
         return zoneAvant;
+    }
+
+    public CarteViewJoueur viewCarteMain(Carte c)
+    {
+        for(int i = 0; i < mainView.size(); i++)
+        {
+            if(mainView.get(i).getCarte().getId() == c.getId())
+            {
+                return mainView.get(i);
+            }
+        }
+        return null;
+    }
+
+    public void removeWithId(Carte c)
+    {
+        CarteViewJoueur cv = null;
+        for(int i = 0; i < mainView.size(); i++)
+        {
+            if(mainView.get(i).getCarte().getId() == c.getId())
+            {
+                 cv = mainView.get(i);
+            }
+        }
+        if(cv != null)
+            mainView.remove(cv);
     }
 }

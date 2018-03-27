@@ -83,7 +83,7 @@ public class CarteViewJoueur
                         int ind = demiTerrainOwner.getMainView().indexOf(this);
                         demiTerrainOwner.getOwner().getMain_joueur().remove(carte);
                         demiTerrainOwner.getMainView().remove(this);
-                        demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                        demiTerrainOwner.miseAJourMainSelonIndice(ind, false);
                         root.getChildren().remove(carteView);
                     }
                     else
@@ -114,7 +114,7 @@ public class CarteViewJoueur
                             demiTerrainOwner.getOwner().getBreak_zone().add(carte);
                             carte = null;
                             demiTerrainOwner.getMainView().remove(this);
-                            demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                            demiTerrainOwner.miseAJourMainSelonIndice(ind, false);
                             root.getChildren().remove(carteView);
                         });
                     }
@@ -154,7 +154,7 @@ public class CarteViewJoueur
                         demiTerrainOwner.getOwner().getBreak_zone().add(carte);
                         carte = null;
                         demiTerrainOwner.getMainView().remove(this);
-                        demiTerrainOwner.miseAJourMainSelonIndice(ind);
+                        demiTerrainOwner.miseAJourMainSelonIndice(ind, false);
                         root.getChildren().remove(carteView);
                     });
 
@@ -208,4 +208,9 @@ public class CarteViewJoueur
         timeline.play();
     }
 
+
+    public Carte getCarte()
+    {
+        return carte;
+    }
 }

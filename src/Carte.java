@@ -16,9 +16,12 @@ abstract public class Carte implements Serializable{
     protected Joueur owner;
     protected String type;
     protected String imageReference;
+    protected int id;
+    protected static int ids= 0;
 
     public Carte(Joueur owner){
         this.owner = owner;
+        id = ids++;
     }
 
     public String toString(){
@@ -45,12 +48,8 @@ abstract public class Carte implements Serializable{
         return imageReference;
     }
 
-    public static Carte creationCarte(String nom, Joueur j)
+    public int getId()
     {
-        if(nom.equals(ImageCarte.CARTE_A_172C.name()))
-            return new A_172C(j);
-        if(nom.equals(ImageCarte.CARTE_B_131C.name()))
-            return new B_131C(j);
-        return null;
-    };
+        return id;
+    }
 }
