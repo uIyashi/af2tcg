@@ -64,4 +64,9 @@ abstract public class Carte implements Serializable{
     {
         return pv;
     }
+
+    public Joueur getOwner()
+    {
+        return owner;
+    }
 }

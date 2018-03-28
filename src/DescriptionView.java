@@ -40,6 +40,14 @@ public class DescriptionView
 
     public void setTextBoxCarte(Carte c)
     {
-        text.setText(c.getNom()+"\n\n"+"pv : " + c.getPv());
+        if(c instanceof Avant)
+        {
+            Avant ca = (Avant)c;
+            text.setText(c.getNom()+"\n\n"+"pv : " + ca.getPv()
+                    +"\n\n"+"Puissance : " + ca.getPuissance()
+                    +"\n\n"+"Damage : " + ca.getDamage()
+            );
+        }
+
     }
 }

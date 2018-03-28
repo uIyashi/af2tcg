@@ -16,6 +16,7 @@ import javafx.util.Duration;
 public class EmplacementCarteAvant extends EmplacementCarteTerrain
 {
 
+
     /**
      * Constructeur : va créer une ImageView qui sera placer au bon emplacement pour accueillir une carte de type Avant
      * @param root le group principale où vont être mis les EnplacementCarteAvant
@@ -106,6 +107,43 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
             }
 
         });
+
+        if(!adversaire)
+        {
+            emplacement.setOnMouseClicked(event ->
+            {
+                if(!empty)
+                {
+                    if(DemiTerrain.carteAvantAttaque != this)
+                        DemiTerrain.carteAvantAttaque = this;
+                }
+            });
+        }
+        else
+        {
+            emplacement.setOnMouseClicked(event ->
+            {
+                if(!empty)
+                {
+                    if(DemiTerrain.carteAvantAttaque != null)
+                    {
+                        Avant ca = (Avant)DemiTerrain.carteAvantAttaque.carte;
+                        Avant caa = (Avant)this.carte;
+                        if(ca.getPuissance() > caa.getPuissance())
+                            caa.setDamage(ca.getPuissance() - caa.getPuissance());
+                        else if (ca.getPuissance() < caa.getPuissance())
+                            ca.setDamage( caa.getPuissance() - ca.getPuissance());
+                        else
+                        {
+                            ca.setDamage( caa.getPuissance()/2);
+                            caa.setDamage(ca.getPuissance()/2);
+                        }
+                        DemiTerrain.carteAvantAttaque = null;
+                    }
+                }
+            });
+        }
+
     }
 
 

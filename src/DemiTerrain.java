@@ -23,12 +23,12 @@ public class DemiTerrain
     private ZoneTerrainArriere zoneArriere;
     private ZoneTerrainAvant zoneAvant;
     private DeckView deckView;
+    public static EmplacementCarteAvant carteAvantAttaque;
 
     private Joueur owner;
     private List<CarteViewJoueur> mainView;
 
 
-    //TODO enlever le constructeur debug Terrain
     //constructeur débug
     public DemiTerrain(Group root)
     {
@@ -145,4 +145,6 @@ public class DemiTerrain
         if(cv != null)
             mainView.remove(cv);
     }
+
+
 }

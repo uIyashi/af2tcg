@@ -27,4 +27,13 @@ abstract public class Avant extends Carte {
         return "[" + nom + " ~" + categorie + "~ | " + couleur + " " + cout + " | " + puissance + "]";
     }
 
+    public int getDamage()
+    {
+        return damage;
+    }
+
+    public int getPuissance()
+    {
+        return puissance;
+    }
 }
