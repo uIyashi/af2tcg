@@ -120,21 +120,13 @@ public abstract class TraitementMessage
             CarteViewJoueur cv = terrainAdversaire.viewCarteMain(cAvant);
             terrainAdversaire.getOwner().getTerrain_avant().add(cAvant);
             terrainAdversaire.getZoneAvant().getTerrainAvant()[i].getEmplacement().setImage(c.getImage());
+            terrainAdversaire.getZoneAvant().getTerrainAvant()[i].setEmplacement(true);
             terrainAdversaire.getZoneAvant().getTerrainAvant()[i].setCarte(c);
             int ind = terrainAdversaire.getMainView().indexOf(cv);
             cv.getCarteView().setVisible(false);
             terrainAdversaire.getOwner().removeCarteMainWithId(c);
             terrainAdversaire.removeWithId(c);
             System.err.println("taille main : " + terrainAdversaire.getOwner().getMain_joueur().size());
-            /*
-             for(Carte cc : terrainAdversaire.getOwner().getMain_joueur())
-                       if(cc.getId() == c.getId())
-                           terrainAdversaire.getOwner().getMain_joueur().remove(cc);
-                   for(CarteViewJoueur carteViewJoueur : terrainAdversaire.getMainView())
-                       if(carteViewJoueur.getCarte().getId() == cv.getCarte().getId())
-                           terrainAdversaire.getMainView().remove(cv);
-             */
-
             terrainAdversaire.miseAJourMainSelonIndice(ind, true);
             root.getChildren().remove(cv.getCarteView());
 

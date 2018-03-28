@@ -1,6 +1,3 @@
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -10,6 +7,7 @@ public class B_002C extends Sort{
         super(owner);
         nom = "Boule de feu LV1";
         couleur = Element.ROUGE;
+        pv = 100;
     }
 
     @Override

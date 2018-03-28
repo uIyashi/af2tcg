@@ -57,7 +57,12 @@ abstract public class EmplacementCarteTerrain
 
     public void setCarte(Carte carte)
     {
-        this.carte = carte;
+        if(carte != null)
+        {
+            this.carte = carte;
+        }
+
+
     }
 
     public int getInd()

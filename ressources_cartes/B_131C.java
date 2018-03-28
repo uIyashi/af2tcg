@@ -1,5 +1,3 @@
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class B_131C extends Avant {
 
@@ -10,6 +8,7 @@ public class B_131C extends Avant {
         this.puissance = 8000;
         this.couleur = Element.BLEU;
         imageReference = ImageCarte.CARTE_B_131C.name();
+        pv = 100;
     }
 
 

@@ -40,6 +40,6 @@ public class DescriptionView
 
     public void setTextBoxCarte(Carte c)
     {
-
+        text.setText(c.getNom()+"\n\n"+"pv : " + c.getPv());
     }
 }

@@ -17,11 +17,13 @@ abstract public class Carte implements Serializable{
     protected String type;
     protected String imageReference;
     protected int id;
+    protected int pv;
     protected static int ids= 0;
 
     public Carte(Joueur owner){
         this.owner = owner;
         id = ids++;
+        pv = 0;
     }
 
     public String toString(){
@@ -51,5 +53,15 @@ abstract public class Carte implements Serializable{
     public int getId()
     {
         return id;
+    }
+
+    public String getNom()
+    {
+        return nom;
+    }
+
+    public int getPv()
+    {
+        return pv;
     }
 }

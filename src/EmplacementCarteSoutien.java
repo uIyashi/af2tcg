@@ -18,7 +18,6 @@ public class EmplacementCarteSoutien extends EmplacementCarteTerrain
         //lorsque qu'on survole l'ImageView pendant un D'nD
         //TODO Modifier le drag and drop pour récupe la carte pour lancer les bonne méthode
         emplacement.setOnDragOver(event -> {
-            System.err.println("DnD Over detected");
             final Dragboard dragBroard = event.getDragboard();
             final Object o = event.getGestureSource();
             if (o != emplacement && (dragBroard.getString() == "soutien")) event.acceptTransferModes(TransferMode.MOVE);
@@ -26,7 +25,6 @@ public class EmplacementCarteSoutien extends EmplacementCarteTerrain
         });
 
         emplacement.setOnDragDropped(event -> {
-            System.err.println("DnD Drop detected");
             boolean success = false;
             try
             {
