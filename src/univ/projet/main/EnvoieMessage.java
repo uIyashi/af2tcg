@@ -15,7 +15,7 @@ public abstract class EnvoieMessage
     }
     public static void envoyeMessagePioche(Carte cartes[])
     {
-        envoieMessage("univ.projet.main.Carte");
+        envoieMessage("Carte");
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(300),
                 ae -> {

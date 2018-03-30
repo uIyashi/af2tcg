@@ -60,7 +60,7 @@ public abstract class TraitementMessage
                                 }
 
                             }
-                            if(resultat[0].equals("univ.projet.main.Carte"))
+                            if(resultat[0].equals("Carte"))
                             {
                                 try
                                 {
