@@ -1,3 +1,4 @@
+package univ.projet.main;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -6,6 +7,7 @@ import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.util.Duration;
+import univ.projet.ressource_cartes.ImageCarte;
 
 
 /**
@@ -19,7 +21,7 @@ public class CarteViewJoueur
     private ImageView carteView;
     private Carte carte;
     private DemiTerrain demiTerrainOwner;
-    static final DataFormat CARTE_FORMAT = new DataFormat("Carte");
+    static final DataFormat CARTE_FORMAT = new DataFormat("univ.projet.main.Carte");
 
     public CarteViewJoueur(Group root, DemiTerrain demiTerrain, Carte carte, int x, int y, boolean adversaire)
     {

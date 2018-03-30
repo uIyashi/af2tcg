@@ -1,3 +1,4 @@
+package univ.projet.main;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -6,9 +7,10 @@ import javafx.scene.Group;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 import javafx.util.Duration;
+import univ.projet.ressource_cartes.ImageCarte;
 
 /**
- * Classe représantnant un emplacement de carte Avant
+ * Classe représantnant un emplacement de carte univ.projet.main.Avant
  * @author Wangon Romain "NekoRomain"
  * @
  */
@@ -18,7 +20,7 @@ public class EmplacementCarteAvant extends EmplacementCarteTerrain
 
 
     /**
-     * Constructeur : va créer une ImageView qui sera placer au bon emplacement pour accueillir une carte de type Avant
+     * Constructeur : va créer une ImageView qui sera placer au bon emplacement pour accueillir une carte de type univ.projet.main.Avant
      * @param root le group principale où vont être mis les EnplacementCarteAvant
      * @param x la coordonnée x de l'enplacement
      * @param y la coordonnée y de l'enplacement

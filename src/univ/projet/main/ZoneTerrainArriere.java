@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 import javafx.scene.Group;
 
 /**
@@ -15,7 +17,7 @@ public class ZoneTerrainArriere
         terrainArriere = new EmplacementCarteSoutien[EMPLACEMENT_SOUTIEN_MAX];
         for(int i = 0; i < EMPLACEMENT_SOUTIEN_MAX; i++)
         {
-            //terrainArriere[i] = new EmplacementCarteSoutien(root);
+            //terrainArriere[i] = new univ.projet.main.EmplacementCarteSoutien(root);
         }
 
     }

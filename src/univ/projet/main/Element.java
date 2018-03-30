@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 public enum Element {
     ROUGE,
     BLEU,

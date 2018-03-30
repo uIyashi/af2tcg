@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 import javafx.scene.Group;
 
 /**
@@ -7,8 +9,8 @@ import javafx.scene.Group;
 public class ZoneTerrainAvant
 {
 
-    private final int EMPLACEMENT_AVANT_MAX = 7; //nombre d'emplacement de carte Avant
-    private EmplacementCarteAvant terrainAvant[]; //tableau d'emplacement de carte Avant
+    private final int EMPLACEMENT_AVANT_MAX = 7; //nombre d'emplacement de carte univ.projet.main.Avant
+    private EmplacementCarteAvant terrainAvant[]; //tableau d'emplacement de carte univ.projet.main.Avant
     //TODO initilaliser les zones et bien les positionner sur l'ecran dans le constructeur
 
     public ZoneTerrainAvant(Group root, boolean adversaire)

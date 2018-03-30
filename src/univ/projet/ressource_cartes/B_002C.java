@@ -1,7 +1,12 @@
+package univ.projet.ressource_cartes;
+import univ.projet.main.*;
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class B_002C extends Sort{
+public class B_002C extends Sort
+{
     private  static  final  long serialVersionUID =  1450092881346723536L;
     public B_002C(Joueur owner){
         super(owner);
@@ -15,7 +20,7 @@ public class B_002C extends Sort{
         if(owner.getAdversaire().getTerrain_soutien().isEmpty() && owner.getTerrain_avant().isEmpty()){
             return false;
         }else{
-            System.out.println("Choisissez un Avant. Il reçoit 6000 points de dégâts.");
+            System.out.println("Choisissez un univ.projet.main.Avant. Il reçoit 6000 points de dégâts.");
             ArrayList<Avant> choix = new ArrayList<>();
             choix.addAll(owner.getAdversaire().getTerrain_avant());
             choix.addAll(owner.getTerrain_avant());

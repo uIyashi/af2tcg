@@ -1,7 +1,8 @@
+package univ.projet.main;
+
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
-
-import java.io.IOException;
+import univ.projet.ressource_cartes.ImageCarte;
 
 /**
  * Classe qui contient la view pour afficher le deck à l'écran et ajouter les animations concerner

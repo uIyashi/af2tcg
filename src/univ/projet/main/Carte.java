@@ -1,9 +1,9 @@
+package univ.projet.main;
+
 import javafx.scene.image.Image;
+import univ.projet.ressource_cartes.ImageCarte;
 
 
-
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.Serializable;
 
 abstract public class Carte implements Serializable{

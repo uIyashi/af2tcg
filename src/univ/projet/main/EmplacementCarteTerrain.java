@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 import javafx.scene.Group;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;

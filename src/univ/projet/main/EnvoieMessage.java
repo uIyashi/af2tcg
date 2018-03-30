@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.util.Duration;
@@ -13,7 +15,7 @@ public abstract class EnvoieMessage
     }
     public static void envoyeMessagePioche(Carte cartes[])
     {
-        envoieMessage("Carte");
+        envoieMessage("univ.projet.main.Carte");
         Timeline timeline = new Timeline(new KeyFrame(
                 Duration.millis(300),
                 ae -> {

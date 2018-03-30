@@ -1,8 +1,7 @@
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+package univ.projet.main;
 
-import java.io.IOException;
+import javafx.scene.Group;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -75,7 +74,7 @@ public class DemiTerrain
         CarteViewJoueur iView = new CarteViewJoueur(root, this, carte, 157 + mainView.size()* 86,664, adversaire);
         mainView.add(iView);
         //TODO a modifier
-        //Jeu.envoieMessage("Carte:");
+        //univ.projet.main.Jeu.envoieMessage("univ.projet.main.Carte:");
 
 
 

@@ -1,3 +1,5 @@
+package univ.projet.ressource_cartes;
+
 import javafx.scene.image.Image;
 
 /**

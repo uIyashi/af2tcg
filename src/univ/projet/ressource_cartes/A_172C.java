@@ -1,12 +1,13 @@
-import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.input.*;
+package univ.projet.ressource_cartes;
 
-public class A_172C extends Sort{
+import univ.projet.main.*;
+
+public class A_172C extends Sort
+{
 
     private static final long serialVersionUID = 39393939393939L;
 
-    //static final DataFormat CARTE_FORMAT = new DataFormat("Carte");
+    //static final DataFormat CARTE_FORMAT = new DataFormat("univ.projet.main.Carte");
 
     public A_172C(Joueur owner){
         super(owner);

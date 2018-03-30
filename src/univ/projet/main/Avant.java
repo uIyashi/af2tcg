@@ -1,6 +1,8 @@
+package univ.projet.main;
+
 abstract public class Avant extends Carte {
     private  static  final  long serialVersionUID =  1350092881346723536L;
-    // Avant: Carte qui attaquent et défendent
+    // univ.projet.main.Avant: univ.projet.main.Carte qui attaquent et défendent
     protected int puissance;
     protected String categorie = "Standard";
     protected int damage = 0; // si damage >= puissance, break

@@ -1,17 +1,9 @@
-/**
+package univ.projet.main; /**
  * @author Wangon Romain "NekoRomain"
  */
 
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.application.Platform;
 import javafx.scene.Group;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.stage.Stage;
-import javafx.util.Duration;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -68,7 +60,7 @@ public abstract class TraitementMessage
                                 }
 
                             }
-                            if(resultat[0].equals("Carte"))
+                            if(resultat[0].equals("univ.projet.main.Carte"))
                             {
                                 try
                                 {

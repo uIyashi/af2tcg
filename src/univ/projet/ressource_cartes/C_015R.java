@@ -1,9 +1,10 @@
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+package univ.projet.ressource_cartes;
+import univ.projet.main.*;
 
 import java.util.Scanner;
 
-public class C_015R extends Soutien {
+public class C_015R extends Soutien
+{
     private  static  final  long serialVersionUID =  1350192881346723536L;
 
     public C_015R(Joueur owner){

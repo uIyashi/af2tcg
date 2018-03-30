@@ -1,3 +1,5 @@
+package univ.projet.main;
+
 import java.io.Serializable;
 import java.util.List;
 

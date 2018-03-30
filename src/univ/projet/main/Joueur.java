@@ -1,3 +1,8 @@
+package univ.projet.main;
+
+import univ.projet.ressource_cartes.A_172C;
+import univ.projet.ressource_cartes.B_131C;
+
 import java.io.Serializable;
 import java.util.*;
 
